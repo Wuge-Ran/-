@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>冒泡排序</title>
+</head>
+<body>
+    <script>
+        /**
+        * 冒泡排序
+        */
+        function bubbleSort(list) {
+        let isHasChange = true    // 优化点: 使用此变量记录是否前一次冒泡发生交换, 当前一次未发生交换时说明排序已完成,无需再冒泡
+
+        for(let i = 0; i < list.length - 1 && isHasChange; i++) {
+            isHasChange = false
+            // 单次冒泡
+            // 每次冒泡都会将最大的数字放到最后, 所以单次冒泡需要遍历的个数减少 1
+            for(let j = 0; j < list.length - 1 - i; j++) {
+            let cur = list[j]
+            let next = list[j+1]
+            if (cur > next) {
+                let tmp = next
+                list[j+1] = cur
+                list[j] = tmp
+                // 发生了交换
+                isHasChange = true
+            }
+            }
+            
+            if (isHasChange === false) break
+
+        }
+
+        return list
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>两数之和</title>
+</head>
+<body>
+    <script>
+        /**
+            合并两个有序数组
+        */
+        function merge(leftArr, rightArr){
+            const result = []
+            while(leftArr.length && rightArr.length) {
+                leftArr[0] <= rightArr[0] ? result.push(leftArr.shift()) : result.push(rightArr.shift())
+            }
+            while(leftArr.length) result.push(leftArr.shift())
+            while(rightArr.length) result.push(rightArr.shift())
+            return result
+        }
+        function merge2(leftArr, rightArr){
+            let index1 = leftArr.length-1;
+            let index2 = rightArr.length-1;
+            let sumIndex = leftArr.length + rightArr.length-1;
+            while(index2>=0){
+                if(index1 < 0){
+                    leftArr[sumIndex--] = rightArr[index2--];
+                    continue;
+                }
+                if(leftArr[index1]>=rightArr[index2]){
+                    leftArr[sumIndex--] = leftArr[index1--];
+                }else{
+                    leftArr[sumIndex--] = rightArr[index2--];
+                }
+            } 
+            return leftArr;
+        }
+        let leftArr = [1,45,222],
+         rightArr = [4,6]
+        console.log(merge2(leftArr, rightArr))
+    </script>
+</body>
+</html>
