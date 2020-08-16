@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>继承</title>
+</head>
+<body>
+    <script>
+       //ES5继承 寄生组合式继承
+       function Parent(name,age){
+        this.name = name;
+        this.age = age;
+       }
+       function Children(){
+        Parent.apply(this,['hah',18]);
+       }
+       Children.prototype = Object.create(Parent.prototype);
+       Children.prototype.constructor = Children;//将子类prototype.constructor指回构造函数本身，以防继承链混乱
+       const child = new Children();
+       console.log(child);
+    </script>
+</body>
+</html>
