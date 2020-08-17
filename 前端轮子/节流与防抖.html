@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button class="btn">按钮</button>
+    <script>
+        function test(){
+            console.log('test');
+        }
+        let btn = document.querySelector('.btn');
+        let debounceFn = debounce(test,500);
+        btn.addEventListener('click',debounceFn);
+        //节流 高频事件触发，但在n秒内只会执行一次，所以节流会稀释函数的执行频率
+        function throttle(fn,time){
+            let timeout = null;
+            return function(){
+                if(timeout) return;
+                let args = arguments;
+                timeout = setTimeout(()=>{
+                    console.log(111)
+                    fn.apply(this,args);
+                    timeout = null;
+                },time);
+            }
+            
+        }
+        
+        //防抖 触发高频事件后n秒内函数只会执行一次，如果n秒内高频事件再次被触发，则重新计算时间
+        function debounce(fn,time){
+            let timeout = null;
+            let flag = true;
+            return function(){
+                let args = arguments;
+                clearTimeout(timeout);
+                timeout  = setTimeout(()=>{
+                    console.log(111)
+                    fn.apply(this,args);  
+                },time);
+            }
+        }
+
+    </script>
+</body>
+</html>

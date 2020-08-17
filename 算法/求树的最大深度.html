@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="parent">
+        <div class="child-2">
+            <div class="child-2-1">d</div>
+            <div class="child-2-2">e</div>
+        </div>
+        <div class="child-3">
+            <div class="child-3-1">f</div>
+        </div>
+    </div>
+      <script>
+        let parent = document.querySelector('.parent');
+        let deepLength = (node) => {
+            if (!node.children || node.children.length === 0) {
+                return 1;
+            }
+            const maxChildrenDepth = [...node.children].map(v => deepLength(v));
+            return 1 + Math.max(...maxChildrenDepth)
+        }
+        console.log(deepLength(parent));    
+      </script>
+</body>
+</html>
