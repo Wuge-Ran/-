@@ -18,11 +18,11 @@
       <script>
         let parent = document.querySelector('.parent');
         let deepLength = (node) => {
-            if (!node.children || node.children.length === 0) {
-                return 1;
+            if(!node.children||!node.children.length){
+                return 1
             }
-            const maxChildrenDepth = [...node.children].map(v => deepLength(v));
-            return 1 + Math.max(...maxChildrenDepth)
+            let deepArr = [...node.children].map(child => deepLength(child));
+            return 1 + Math.max(...deepArr);
         }
         console.log(deepLength(parent));    
       </script>
