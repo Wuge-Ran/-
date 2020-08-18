@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //平铺并去重 
+        //简单版
+        var arr = [ [1, 2, 2], [3, 4, 5, 5], [6, 7, 8, 9, [11, 12, [12, 13, [14] ] ] ], 10];
+        function flat(arr){
+            console.log(arr.toString())
+            let flatArr = arr.toString().split(",");
+            let setArr = new Set(flatArr);
+            return [...setArr];
+        }
+        // console.log(flat(arr));
+        //面试官不满意只有好好写。。
+        function flat2(arr){
+            while(arr.some(Array.isArray)){
+                arr = [].concat(...arr);
+            }
+            return [...new Set(arr)];
+        }
+        let newarr = flat2(arr).sort((a,b)=>a-b);
+        console.log(newarr);
+    </script>
+</body>
+</html>

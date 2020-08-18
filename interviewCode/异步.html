@@ -8,6 +8,7 @@
 <body>
     <script>
         //script start - async1 start -async2 - promise1 - script end - async1 end - promise2 - setTimeout
+        //时间循环 evenLoop
         async function async1() {
             console.log('async1 start');
             await async2();
