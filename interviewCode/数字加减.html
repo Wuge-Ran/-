@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数字加减</title>
+</head>
+<body>
+    <script>
+        //实现 (5).add(3).minus(2) 功能。
+        Number.prototype.add = function(num){
+            if(Object.prototype.toString.call(num) !== '[object Number]'){
+                throw new Error('参数必须是数字');
+            }
+            let res = this + num;
+            return res;
+        }
+        Number.prototype.minus = function(num){
+            if(Object.prototype.toString.call(num) !== '[object Number]'){
+                throw new Error('参数必须是数字');
+            }
+            let res = this - num;
+            return res;
+        }
+        console.log((5).add(3).minus(2))
+    </script>
+</body>
+</html>

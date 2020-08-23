@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>类数组</title>
+</head>
+
+<body>
+    <script>
+        /**
+        *类数组（ArrayLike）：
+        *    一组数据，由数组来存，但是如果要对这组数据进行扩展，
+            会影响到数组原型，
+            ArrayLike 的出现则提供了一个中间数据桥梁，ArrayLike 有数组的特性， 
+            但是对 ArrayLike 的扩展并不会影响到原生的数组。
+        **/
+        /**
+            判断类数组的方法：
+            1. 存在且是对象
+            2. 对象上的 splice 属性是函数类型
+            3. 对象上有 length 属性且为正整数
+        **/
+        var obj = {
+            '2': 3,
+            '3': 4,
+            'length': 2,
+            'splice': Array.prototype.splice,
+            'push': Array.prototype.push
+        }
+        obj.push(1)
+        obj.push(2)
+        console.log(obj);
+    </script>
+</body>
+
+</html>
