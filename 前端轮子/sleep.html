@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sleep函数</title>
+</head>
+<body>
+    <script>
+        //sleep
+        function sleep(time){
+            return new Promise((res,rej)=>{
+                setTimeout(res,time)
+            })
+        }
+        sleep(1000).then(()=>{
+            console.log('sleep函数');
+        })
+    </script>
+</body>
+</html>
