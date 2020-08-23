@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>设计 LazyMan 类</title>
+</head>
+
+<body>
+    <script>
+        class LazyManClass {
+           constructor(name){
+               console.log(`我是${name}`);
+               this.sub = [];
+               setTimeout(()=>{
+                this.next();
+               },0)
+           }
+           eat(what){   
+            let fn = ()=>{
+                console.log(`吃了${what}`);
+                this.next();
+            }
+            this.sub.push(fn);
+            return this;
+           }
+           sleepFirst(time){
+            let fn = ()=>{
+                setTimeout(()=>{
+                    console.log(`睡了${time}秒`);
+                    this.next();
+                },time*1000)
+            }
+            this.sub.unshift(fn);
+            return this;
+           }
+           sleep(time){
+            let fn = ()=>{
+                setTimeout(()=>{
+                    console.log(`睡了${time}秒`);
+                    this.next();
+                },time*1000)
+            }
+            this.sub.push(fn);
+            return this;
+           }
+           next(){
+               let fn = this.sub.shift();
+               fn&&fn();
+           }
+        }
+
+        function LazyMan(name) {
+            return new LazyManClass(name);
+        }
+        LazyMan('Tony').eat('lunch').eat('dinner').sleepFirst(2).sleep(3).eat('junk food');
+    </script>
+    
+</body>
+
+</html>

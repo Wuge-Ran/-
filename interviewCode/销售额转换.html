@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>销售额转换</title>
+</head>
+<body>
+    <script>
+        //{1:222, 2:123, 5:888}，请把数据处理为如下结构：
+        //[222, 123, null, null, 888, null, null, null, null, null, null, null]。
+        function toArrayFn(obj){
+            let arr = Array.from({length:12}).map((item,index)=>{
+                    return obj[index+1] ? obj[index+1] : null;
+            })
+            return arr;
+        }
+        console.log(toArrayFn({1:222, 2:123, 5:888}));
+    </script>
+</body>
+</html>

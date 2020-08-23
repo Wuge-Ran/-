@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>冒泡排序</title>
+</head>
+<body>
+    <script>
+        //冒泡排序
+        /**
+        优化点：
+        1.每次循环一次，后面就会多一段有序的数组，无需再遍历
+        2.如果剩下的还没有排序的部分，本身就是有序的，也可以让遍历跳过，就又可以省下不少时间
+        **/
+        function bubbleSort(arr){
+            let finish;
+            let transit;
+            for(let i = 0;i < arr.length-1;i++){
+                finish = true;
+                let len = arr.length-1-i;
+                let pos = 0;
+                for(let j = 0;j < len;j++){
+                    if(arr[j]>arr[j+1]){
+                        finish = false;
+                        pos = j;
+                        transit  = null;
+                        transit = arr[j];
+                        arr[j] = arr[j+1];
+                        arr[j+1] = transit;
+                    }
+                }
+                len = pos;
+                if(finish) break;
+            }
+            return arr;
+        }
+        console.log(bubbleSort([10,3,11,33,2,1]));
+    </script> 
+</body>
+</html>
