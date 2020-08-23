@@ -7,7 +7,7 @@
 </head>
 <body>
     <script>
-        //sleep
+        //sleep promise
         function sleep(time){
             return new Promise((res,rej)=>{
                 setTimeout(res,time)
@@ -16,6 +16,14 @@
         sleep(1000).then(()=>{
             console.log('sleep函数');
         })
+        //sleep async awit
+        async function asyncSleep(cb){
+            await sleep(2000);
+            cb()
+        }
+        console.log(asyncSleep(()=>{
+            console.log('sleep函数2')
+        }))
     </script>
 </body>
 </html>
