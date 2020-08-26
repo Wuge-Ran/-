@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数组交集</title>
+</head>
+<body>
+    <script>
+        /**
+        * 给定两个数组，编写一个函数来计算它们的交集。
+        **/
+        const a=[2,3,3,3], b=[3,3]
+        function intersection(a,b){
+            let arr = a.filter(item=> b.includes(item) )
+            return [...new Set(arr)];
+        }
+
+        console.log(intersection(a, b))
+    </script>
+</body>
+</html>
