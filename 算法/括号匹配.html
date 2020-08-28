@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>括号匹配</title>
+</head>
+<body>
+    <script>
+        //给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串，判断字符串是否有效。
+        var isValid = function (s) {
+            let stack = [];
+            if(s.length % 2 !== 0){
+                return false;
+            }
+            for(let i of s){
+                if(i === "{" || i==="(" || i==="["){
+                    stack.push(i);
+                }else{
+                    if(stack.length === 0) return false;
+                    let ele = stack.pop();
+                    if( (ele === '{' && i !== '}')||(ele === '(' && i !== ')')||ele === '[' && i !== ']' ){
+                        return false;
+                    }
+                }
+            }
+            return stack.length == 0;
+        };
+        console.log(isValid("({)}"));
+    </script>
+</body>
+</html>
