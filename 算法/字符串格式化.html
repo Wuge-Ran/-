@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>字符串格式化</title>
+</head>
+<body>
+    <script>
+        //'2321413214.111' => '2,321,413,214.111'
+        let str = '2211222314.111';
+        function strFormat(str){
+            let arr = str.split('.');
+            let int = arr[0];
+            let float = arr[1] ? arr[1] : null;
+            let queue = [];
+            let index = 0;
+            for(let i = int.length-1; i>0; i--){
+                queue.unshift(int[i])
+                index++;
+                if(index%3 === 0 && index !== int.length-1 ){
+                    queue.unshift(',')
+                }
+            }
+            str = queue.join('');
+            if(float){
+                str += '.'+float;
+            }
+            return str;
+        }
+        console.log(strFormat(str));
+    </script>
+</body>
+</html>
