@@ -13,7 +13,9 @@
         let a1 = 1;
         let a2 = 1;
         let res = 0;
-        if( num === 1 || num === 2){
+        if( num === 1){
+            return [1]
+        }else if( num === 2 ){
             return [1,1]
         }else{
             for(let i = 2; i <= num; i++){

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bind</title>
+</head>
+<body>
+    <script>
+        Object.prototype.bind = function(target,...args){
+            let _this = this;
+            let bindFn = function (){
+                return this.apply(this instanceof _this ? this : target,args.concat(Array.prototype.slice.call(arguments))) 
+            }
+            bindFn.prototype = Object.create(_this.prototype);
+            return bindFn;
+        }
+    </script>
+</body>
+</html>

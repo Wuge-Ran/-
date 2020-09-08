@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>归并排序</title>
+</head>
+<body>
+    <script>
+        let arr =[2,3,1,9,1,7];
+        function mergeSort(arr){
+            if(arr.length <= 1) return arr;
+            let pos = arr.length/2;
+            let left = arr.slice(0,pos);
+            let right = arr.slice(pos,arr.length);
+            return merge(mergeSort(left),mergeSort(right));
+        }
+        function merge(left,right){
+            let result = [];
+            while(left.length&&right.length){
+                left[0]<right[0] ? result.push(left.shift()) : result.push(right.shift());
+            }
+            while(left.length) result.push(left.shift());
+            while(right.length) result.push(right.shift());
+            return result;
+        }
+        console.log(mergeSort(arr));
+    </script>
+</body>
+</html>

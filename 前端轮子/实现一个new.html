@@ -14,8 +14,9 @@
             3.返回新实例（规范规定，如果构造方法返回了一个对象，那么返回该对象，否则返回第一步创建的新对象）
         **/
     function myNew(fn,...args){
-        let newObj = Object.create(fn);
-        let res = fn.apply(this,args);
+        //newObj.__proto__ = fn.prototype;
+        let newObj = Object.create(fn.prototype);
+        let res = fn.apply(newObj,args);
         return Object.prototype.toString.call(res) === '[object Object]'? res : newObj;
     }
     </script>

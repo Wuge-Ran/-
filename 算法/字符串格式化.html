@@ -8,25 +8,19 @@
 <body>
     <script>
         //'2321413214.111' => '2,321,413,214.111'
-        let str = '2211222314.111';
+        let str = '123456789.111';
         function strFormat(str){
-            let arr = str.split('.');
-            let int = arr[0];
-            let float = arr[1] ? arr[1] : null;
+            let splitArr = str.split('.');
+            let int = splitArr[0].split('').reverse();
+            let float = '.'+splitArr[1];
             let queue = [];
-            let index = 0;
-            for(let i = int.length-1; i>0; i--){
-                queue.unshift(int[i])
-                index++;
-                if(index%3 === 0 && index !== int.length-1 ){
-                    queue.unshift(',')
+            int.forEach((item,index)=>{
+                queue.unshift(item);
+                if( (index+1)%3 === 0 && (index+1)!== int.length){
+                    queue.unshift(',');
                 }
-            }
-            str = queue.join('');
-            if(float){
-                str += '.'+float;
-            }
-            return str;
+            })
+            return queue.join('') + float;
         }
         console.log(strFormat(str));
     </script>

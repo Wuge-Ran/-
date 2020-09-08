@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>原地快排</title>
+</head>
+<body>
+    <script>
+        let arr = [3,31,15,7,2,11,9,7];
+        function quickSort(arr,left,right){
+            if(left < right){
+                let pos = -1;
+                let refer = arr[right];
+                let store;
+                arr.forEach((ele,index)=>{
+                    if(refer >= ele){
+                        pos ++; 
+                        store = arr[index];
+                        arr[index] = arr[pos];
+                        arr[pos] = store;
+                    }
+                })
+                quickSort(arr,left,pos-1);
+                quickSort(arr,pos+1,right);
+            }
+            return arr;
+        }
+
+        console.log(quickSort(arr,0,arr.length-1))
+    </script>
+</body>
+</html>
