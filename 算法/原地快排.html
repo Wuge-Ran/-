@@ -10,19 +10,17 @@
         let arr = [3,31,15,7,2,11,9,7];
         function quickSort(arr,left,right){
             if(left < right){
-                let pos = -1;
-                let refer = arr[right];
-                let store;
-                arr.forEach((ele,index)=>{
-                    if(refer >= ele){
-                        pos ++; 
-                        store = arr[index];
-                        arr[index] = arr[pos];
-                        arr[pos] = store;
+                let pos = left - 1;
+                for(let i = left;i <= right;i++){
+                    if( arr[i] <= arr[right]){
+                        pos++;
+                        let refer = arr[i];
+                        arr[i] = arr[pos];
+                        arr[pos] = refer;
                     }
-                })
-                quickSort(arr,left,pos-1);
-                quickSort(arr,pos+1,right);
+                }
+                quickSort(arr, left, pos-1)
+                quickSort(arr, pos+1, right)
             }
             return arr;
         }
