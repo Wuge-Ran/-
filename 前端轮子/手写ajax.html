@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>手写ajax</title>
+</head>
+<body>
+    <script>
+        function getAjax(url,cb){
+            const xml = new XMLHttpRequest();
+            xml.open('get',url);
+            xml.onreadystatechange = function(){
+                if(xml.readyState === 4){
+                    if(xml.status === 200 || xml.status === 304){
+                        cb.call(xml.responseText);
+                    }
+                }
+            }
+            xml.send();
+        }
+        function postAjax(url,cb,data){
+            const xml = new XMLHttpRequest();
+            xml.open('post',url);
+            xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+            xml.onreadystatechange = function(){
+                if(xml.readyState === 4){
+                    if(xml.status === 200 || xml.status === 304){
+                        cb.call(xml.responseText);
+                    }
+                }
+            }
+            xml.send(data);
+        }
+    </script>
+</body>
+</html>
