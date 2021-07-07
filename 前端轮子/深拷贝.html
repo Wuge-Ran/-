@@ -16,13 +16,14 @@
                 }
                 weakMap.set(obj,newObj);
                 for(let i in obj){
-                    newObj[i] =  deepClone(obj[i],weakMap);
+                    neiwObj[i] =  deepClone(obj[i],weakMap);
                 }
                 return newObj;
             }else{
                 return obj;
             }
         }
+        
 
     </script>
 </body>

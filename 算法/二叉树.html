@@ -15,7 +15,6 @@
         const preorderTraversal = (root) => {
             const list = [];
             const stack = [];
-
             // 当根节点不为空的时候，将根节点入栈
             if (root) stack.push(root)
             while (stack.length > 0) {
@@ -43,8 +42,8 @@
             while (node || stack.length) {
                 // 遍历左子树
                 while (node) {
-                    stack.push(node)
-                    node = node.left
+                    stack.push(node);
+                    node = node.left;
                 }
                 node = stack.pop()
                 list.push(node.val)

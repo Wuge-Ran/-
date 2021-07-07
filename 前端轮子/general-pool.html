@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //批处理10个
+        class Scheduler {
+            constructor() {
+                this.waitQue = []
+                this.curQue = []
+                this.maxQueSize = 10
+            }
+            add(promiseCreator) {
+                return this.run(promiseCreator)
+            }
+
+            run(promiseCreator) {
+                if (typeof promiseCreator !== 'function') {
+                    return
+                }
+                if (this.curQue.length >= this.maxQueSize) {
+                    this.waitQue.push(promiseCreator);
+                    return new Promise((rs, reject) => {
+                        promiseCreator.resolve = rs
+                    })
+                } else {
+                    let p = promiseCreator()
+                    this.curQue.push(promiseCreator)
+                    return p.then((res) => {
+                        promiseCreator.resolve && promiseCreator.resolve(res)
+                        return res
+                    }).finally(() => {
+                        let curQueIndex = this.curQue.indexOf(promiseCreator)
+                        let nextPromiseCreator = this.waitQue.shift();
+                        this.curQue.splice(curQueIndex, 1)
+                        if (nextPromiseCreator) {
+                            this.run(nextPromiseCreator)
+                        }
+
+                    })
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

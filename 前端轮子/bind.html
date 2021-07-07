@@ -7,14 +7,19 @@
 </head>
 <body>
     <script>
-        Object.prototype.bind = function(target,...args){
-            let _this = this;
-            let bindFn = function (){
-                return this.apply(this instanceof _this ? this : target,args.concat(Array.prototype.slice.call(arguments))) 
+        (function(){
+            if(Function.prototype.bind){
+                Function.prototype.bind = function(target,...args){
+                    let _this = this;
+                    let fn = function(){
+                        _this.apply(this instanceof _this ? this:target,args.concat(Array.prototype.slice.call(arguments))) 
+                    }
+                    fn.prototype = Object.create(_this.prototype);
+                    return fn;
+                }
             }
-            bindFn.prototype = Object.create(_this.prototype);
-            return bindFn;
-        }
+        })()
+        
     </script>
 </body>
 </html>

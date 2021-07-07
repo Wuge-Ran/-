@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const cache = {};
+        const cacheRequest = function (url, success, fail) {
+            if (!cache[url]) {
+                cache[url] = {
+                    status: "PENDING",
+                    success: [success],
+                    fail: [fail]
+                };
+                request(
+                    url,
+                    data => {
+                        cache[url].status = "SUCCESS";
+                        cache[url].data = data;
+                        while (cache[url].success.length) {
+                            const callback = cache[url].success.shift();
+                            callback(data);
+                        }
+                    },
+                    err => {
+                        cache[url].status = "FAIL";
+                        cache[url].data = err;
+                        while (cache[url].fail.length) {
+                            const callback = cache[url].fail.shift();
+                            callback(data);
+                        }
+                    }
+                );
+                return;
+            }
+            if (cache[url] && cache[url].status === "PENDING") {
+                cache[url].success.push(success);
+                cache[url].fail.push(fail);
+                return;
+            }
+            if (cache[url].status === "SUCCESS") {
+                success(cache[url].data);
+            } else {
+                fail(cache[url].data);
+            }
+        };
+        // a.js
+        cacheRequest("/user", data => {
+            console.log("我是从A中请求的user，数据为" + data);
+        });
+
+        // b.js
+        cacheRequest("/user", data => {
+            console.log("我是从B中请求的user，数据为" + data);
+        });
+    </script>
+</body>
+
+</html>

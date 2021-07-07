@@ -8,6 +8,9 @@
 <body>
     <script>
         
+        function render(template, context) {
+            return template.replace(/{{(.*?)}}/g, (match, key) => context[key.trim()])
+        }
     </script>
 </body>
 </html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //柯里化
+        function sum(...args) {
+            return args.reduce((acc, next) => acc + next);
+        }
+
+        function currying(fn) {
+            let args = [];
+            return function temp(...newArgs) {
+                if (newArgs.length) {
+                    args = [...args, ...newArgs];
+                    return temp
+                } else {
+                    let val = fn.apply(this, args);
+                    args = []; // 每次调用时清空
+                    return val;
+                }
+            }
+        }
+
+        const addCurry = currying(sum);
+
+        console.log(addCurry(1)(2)(3)(4)());
+        console.log(addCurry(1, 2)(3, 4)(5)());
+    </script>
+</body>
+
+</html>
