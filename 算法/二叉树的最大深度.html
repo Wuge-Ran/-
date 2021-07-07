@@ -7,10 +7,19 @@
 </head>
 <body>
     <script>
-        function maxDeep(root){
-            if(!root) return 0;
-            return 1 + Math.Max(maxDeep(root.left),maxDeep(root.right));
-        }
+        var maxDepth = function(root) {
+            let d = 0
+            const DFS = (root,dep) => {
+                if(!root) return;
+                if(!root.left&&!root.right){
+                    d = Math.max(d,dep)
+                }
+                DFS(root.left,dep+1);
+                DFS(root.right,dep+1);
+            }
+            DFS(root,1)
+            return d;
+        };
     </script>
 </body>
 </html>
