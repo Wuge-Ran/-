@@ -1,30 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>深拷贝</title>
 </head>
+
 <body>
     <script>
         //基础版 https://segmentfault.com/a/1190000020255831
-        function deepClone(obj,weakMap = new WeakMap()){
-            if(obj instanceof Object){
+        function deepClone(obj, weakMap = new WeakMap()) {
+            if (obj instanceof Object) {
                 let newObj = Array.isArray(obj) ? [] : {};
-                if(weakMap.has(obj)){
+                if (weakMap.has(obj)) {
                     return weakMap.get(obj);
                 }
-                weakMap.set(obj,newObj);
-                for(let i in obj){
-                    neiwObj[i] =  deepClone(obj[i],weakMap);
+                weakMap.set(obj, newObj);
+                for (let i in obj) {
+                    newObj[i] = deepClone(obj[i], weakMap);
                 }
                 return newObj;
-            }else{
+            } else {
                 return obj;
             }
         }
-        
-
     </script>
 </body>
+
 </html>

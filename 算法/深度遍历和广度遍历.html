@@ -34,6 +34,7 @@
                     deepTraversal1(children[i], nodeList)
                 }
             }
+<<<<<<< HEAD
             return nodeList
         }  
         let deepTraversal3 = (node) => {
@@ -57,6 +58,37 @@
             }
             return nodes
             }
+=======
+        }
+        const tree = {
+            name:1,
+            children:[
+                {
+                    name:2,
+                    children:[
+                        {
+                            name:3
+                        }
+                    ]
+                },
+                {
+                    name:4,
+                }
+            ]
+        }
+        const bfsFn = (root) => {
+            const queue = [root]
+            while(queue.length>0){
+                const node = queue.shift();
+                console.log(node.name);
+                node.children&&node.children.forEach(cnode=>{
+                    queue.push(cnode);
+                })
+                
+            }
+        }
+        bfsFn(tree)
+>>>>>>> a64e61026f5ad5e90b26d33c812c2fb5f493b6c1
       </script>
 </body>
 </html>
